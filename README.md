@@ -13,7 +13,7 @@ Com ela, você pode listar, adicionar, editar e excluir jogos, utilizando templa
 ## Tecnologias utilizadas
 * Flask - Framework web
 * Flask-WTF - Extensão Flask para formulários
-* Bcrypt - Extensão Flask para hashing
+* Flask-Bcrypt - Extensão Flask para hashing
 * Bootstrap - Framework CSS para estilização
 * MySQL - Banco de dados relacional
 
