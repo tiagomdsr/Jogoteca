@@ -1,0 +1,4 @@
+config.py
+prepara_banco.py
+__pycache__/
+venv/
