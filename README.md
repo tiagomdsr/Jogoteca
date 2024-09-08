@@ -8,6 +8,7 @@ Com ela, você pode listar, adicionar, editar e excluir jogos, utilizando templa
 * Excluir jogos da lista
 * Upload de imagens associadas aos jogos
 * Validação de formulários com Flask-WTF
+* Login e cadastro de usuários
 * Hashing de senhas de usuários com Flask-Bcrypt
 
 ## Tecnologias utilizadas

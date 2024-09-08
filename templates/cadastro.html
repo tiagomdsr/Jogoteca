@@ -20,10 +20,13 @@
             {% endif %}
         {% endwith %}
 
-        <h1>Faça seu login</h1>
-        <form method="POST" action="{{ url_for('autenticar') }}">
-            <input type="hidden" name="proxima" value="{{ proxima }}">
+        <h1>Cadastre-se</h1>
+        <form method="POST" action="{{ url_for('cadastrar') }}">
             {{ form.csrf_token() }}
+            <div class="form-group">
+                {{ form.nome.label(class="form-label") }}
+                {{ form.nome(class="form-control") }}
+            </div>
             <div class="form-group">
                 {{ form.nickname.label(class="form-label") }}
                 {{ form.nickname(class="form-control") }}
@@ -33,8 +36,7 @@
                 {{ form.senha(class="form-control") }}
             </div>
             <div class="form-group buttons">
-                {{ form.login(class="btn btn-primary") }}
-                <a href="{{ url_for('cadastro') }}" class="btn btn-primary">Cadastre-se</a>
+                {{ form.cadastrar(class="btn btn-primary") }}
                 <a href="{{ url_for('index') }}" class="btn btn-danger">Voltar</a>
             </div>
         </form>

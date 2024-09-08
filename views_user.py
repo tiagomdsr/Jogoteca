@@ -1,8 +1,8 @@
-from jogoteca import app
+from jogoteca import app, db
 from flask import render_template, request, redirect, session, flash, url_for
 from models import Usuarios
-from helpers import FormularioUsuario
-from flask_bcrypt import check_password_hash
+from helpers import FormularioUsuario, FormularioNovoUsuario
+from flask_bcrypt import check_password_hash, generate_password_hash
 
 @app.route("/login")
 def login():
@@ -29,3 +29,32 @@ def logout():
     session["usuario_logado"] = None
     flash("Logout efetuado com sucesso!", "alert alert-success")
     return redirect(url_for("index"))
+
+@app.route("/cadastro")
+def cadastro():
+    form = FormularioNovoUsuario()
+    return render_template("cadastro.html", form=form)
+
+@app.route("/cadastrar", methods=["POST",])
+def cadastrar():
+    form = FormularioNovoUsuario(request.form)
+
+    if not form.validate_on_submit():
+        return redirect(url_for("cadastro"))
+
+    nome = form.nome.data
+    nickname = form.nickname.data
+    senha = generate_password_hash(form.senha.data).decode("utf-8")
+    
+    nickname_escolhido = Usuarios.query.filter_by(nickname=nickname).first()
+
+    if nickname_escolhido:
+        flash("Nickname já está em uso!", "alert alert-warning")
+        return redirect(url_for("cadastro"))
+    
+    novo_usuario = Usuarios(nome=nome, nickname=nickname, senha=senha)
+    db.session.add(novo_usuario)
+    db.session.commit()
+
+    flash(f"Usuário {nickname} cadastrado com sucesso!", "alert alert-success")
+    return redirect(url_for("login"))
