@@ -167,5 +167,5 @@ Agora, a aplicação estará disponível em http://127.0.0.1:5000/.
 
 ## 7. Funcionalidades futuras
 
-* Adicionar uma página de cadastro.
+* Adicionar uma página de cadastro. ✔
 * Exibir capa dos jogos na tela inicial.
