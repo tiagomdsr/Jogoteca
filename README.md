@@ -168,4 +168,5 @@ Agora, a aplicação estará disponível em http://127.0.0.1:5000/.
 ## 7. Funcionalidades futuras
 
 * Adicionar uma página de cadastro. ✔
-* Exibir capa dos jogos na tela inicial.
+* Exibir capa dos jogos na tela inicial. ✔
+* Resolver bug onde se um jogo é criado sem fornecer capa, a capa padrão não é exibida.

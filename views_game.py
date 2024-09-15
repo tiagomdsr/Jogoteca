@@ -7,7 +7,19 @@ import time
 @app.route("/")
 def index():
     lista_jogos = Jogos.query.order_by(Jogos.id)
-    return render_template("lista.html", titulo="Jogos", jogos=lista_jogos)
+
+    lista_jogos_com_imagem = []
+    for jogo in lista_jogos:
+        capa_jogo = recupera_imagem(jogo.id)
+        lista_jogos_com_imagem.append({
+            "id":jogo.id,
+            "nome":jogo.nome,
+            "categoria":jogo.categoria,
+            "console":jogo.console,
+            "imagem":capa_jogo
+        })
+
+    return render_template("lista.html", titulo="Jogos", jogos=lista_jogos_com_imagem)
 
 @app.route("/novo")
 def novo():
