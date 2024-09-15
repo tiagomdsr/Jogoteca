@@ -87,6 +87,7 @@ def deletar(id):
 
     Jogos.query.filter_by(id=id).delete()
     db.session.commit()
+    deleta_arquivo(jogo.id)
     flash(f"O jogo {nome_jogo} foi deletado com sucesso!", "alert alert-success")
 
     return redirect(url_for("index"))
