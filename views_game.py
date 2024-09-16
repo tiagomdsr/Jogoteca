@@ -50,9 +50,10 @@ def criar():
     db.session.commit()
 
     arquivo = request.files["arquivo"]
-    upload_path = app.config["UPLOAD_PATH"]
-    timestamp = time.time()
-    arquivo.save(f"{upload_path}/capa_{novo_jogo.id}-{timestamp}.jpg")
+    if arquivo.filename != "":
+        upload_path = app.config["UPLOAD_PATH"]
+        timestamp = time.time()
+        arquivo.save(f"{upload_path}/capa_{novo_jogo.id}-{timestamp}.jpg")
 
     return redirect(url_for("index"))
 
@@ -82,10 +83,11 @@ def atualizar():
         db.session.commit()
 
         arquivo = request.files["arquivo"]
-        upload_path = app.config["UPLOAD_PATH"]
-        timestamp = time.time()
-        deleta_arquivo(jogo.id)
-        arquivo.save(f"{upload_path}/capa_{jogo.id}-{timestamp}.jpg")
+        if arquivo.filename != "":
+            upload_path = app.config["UPLOAD_PATH"]
+            timestamp = time.time()
+            deleta_arquivo(jogo.id)
+            arquivo.save(f"{upload_path}/capa_{jogo.id}-{timestamp}.jpg")
 
     return redirect(url_for("index"))
 
